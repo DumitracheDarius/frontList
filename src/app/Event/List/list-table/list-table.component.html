@@ -1,0 +1,125 @@
+<p-table
+  #dt2
+  [value]="events"
+  dataKey="id"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[2, 10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="['id', 'county', 'district', 'locality', 'location', 'date', 'status', 'agent', 'actions']"
+  [tableStyle]="{ 'min-width': '75rem' }"
+>
+
+  <ng-template pTemplate="caption">
+    <div class="d-flex justify-content-between align-items-center">
+      <button pButton label = "clear" class="btn btn-sm btn-link"  (click)="clear(dt2)">
+        <fa-icon icon="rotate-left" class="fa fa-2x fa-fw" style="color: gray;"></fa-icon>
+      </button>
+      <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input #searchInput pInputText type="text" (input)="onSearchInputChange(searchInput.value)" placeholder="Search keyword" />
+    </span>
+      <button class="btn btn-sm btn-link">
+        <fa-icon icon="square-plus" class="fa fa-2x fa-fw" style="position:fixed; left:145rem; top: 1rem; color: #1be600;"></fa-icon>
+      </button>
+    </div>
+  </ng-template>
+
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          ID
+          <p-columnFilter type="text" field="events.id" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          County
+          <p-columnFilter type="text" field="events.county" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          District
+          <p-columnFilter type="text" field="events.district" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Locality
+          <p-columnFilter type="text" field="events.locality" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Location
+          <p-columnFilter type="text" field="events.location" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Date
+          <p-columnFilter type="text" field="events.date" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Status
+          <p-columnFilter type="text" field="events.status" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">
+        <div class="flex align-items-center">
+          Agent
+          <p-columnFilter type="text" field="agentName" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width:10rem">Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-event>
+    <tr>
+      <td>
+        {{ event.id }}
+      </td>
+      <td>
+        {{ event.county }}
+      </td>
+      <td>
+        {{ event.district }}
+      </td>
+      <td>
+        {{ event.locality }}
+      </td>
+      <td>
+        {{ event.location }}
+      </td>
+      <td>
+        {{ event.date_time }}
+      </td>
+      <td>
+        {{ event.status }}
+      </td>
+      <td>Agent1</td>
+      <td>
+        <button class="btn btn-sm btn-link">
+          <fa-icon icon="eye" class="fa fa-2x fa-fw" style="color: #005eff;"></fa-icon>
+        </button>
+        <button class="btn btn-sm btn-link">
+          <fa-icon icon="pencil" class="fa fa-2x fa-fw" style="color: yellow"></fa-icon>
+        </button>
+        <button class="btn btn-sm btn-link">
+          <fa-icon icon="file" class="fa fa-2x fa-fw" style="color: gray"></fa-icon>
+        </button>
+        <button class="btn btn-sm btn-link">
+          <fa-icon icon ="rectangle-xmark" class = "fa fa-2x fa-fw" style="color: red"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
